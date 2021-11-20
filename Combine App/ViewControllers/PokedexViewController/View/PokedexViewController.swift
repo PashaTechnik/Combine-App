@@ -1,22 +1,15 @@
-//
-//  PokedexViewController.swift
-//  SwiftPokedex
-//
-//  Created by Viktor Gidlöf on 2021-05-04.
-//
-
 import UIKit
 
 final class PokedexViewController: CollectionViewController {
     
-    // MARK: Private properties
+
     private let interactor: PokedexInteractable
     private let viewModel: ViewModel
 
-    // MARK: - Public properties
+
     override var preferredStatusBarStyle: UIStatusBarStyle { .lightContent }
     
-    // MARK: - Init
+
     init(interactor: PokedexInteractable, viewModel: ViewModel = ViewModel()) {
         self.interactor = interactor
         self.viewModel = viewModel
@@ -25,7 +18,7 @@ final class PokedexViewController: CollectionViewController {
     
     required init?(coder: NSCoder) { fatalError("init(coder:) has not been implemented") }
     
-    // MARK: - Life cycle
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -37,7 +30,7 @@ final class PokedexViewController: CollectionViewController {
         requestData()
     }
     
-    // MARK: - Private functions
+
     private func requestData() {
         startSpinner()
         
@@ -56,15 +49,15 @@ final class PokedexViewController: CollectionViewController {
         spinner.startAnimating()
     }
     
-    // MARK: - Collection View Delegate
+
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         collectionView.deselectItem(at: indexPath, animated: true)
         
-        interactor.selectPokemon(at: indexPath, in: collectionView)        
+        interactor.selectPokemon(at: indexPath, in: collectionView)
     }
 }
 
-// MARK: - Collection View Layout
+
 extension PokedexViewController: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -72,7 +65,7 @@ extension PokedexViewController: UICollectionViewDelegateFlowLayout {
     }
 }
 
-// MARK: - Scroll View Delegate
+
 extension PokedexViewController {
     
     override func scrollViewDidScroll(_ scrollView: UIScrollView) {
@@ -82,3 +75,4 @@ extension PokedexViewController {
         requestData()
     }
 }
+

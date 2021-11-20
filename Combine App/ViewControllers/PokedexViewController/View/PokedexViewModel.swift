@@ -1,10 +1,3 @@
-//
-//  PokedexViewModel.swift
-//  SwiftPokedex
-//
-//  Created by Viktor Gidlöf on 2021-05-04.
-//
-
 import UIKit
 
 protocol ViewModelProtocol {
@@ -13,19 +6,19 @@ protocol ViewModelProtocol {
     func requestData(_ completion: @escaping (Result<Data, Error>) -> Swift.Void)
 }
 
-// MARK: -
+
 extension PokedexViewController {
 
     final class ViewModel: ViewModelProtocol {
         
-        // MARK: Private properties
+
         private var pokemon = [PokemonDetails]()
 
-        // MARK: - Public properties
+
         var title: String { "Pokedex" }
         var isLoading: Bool = false
         
-        // MARK: - Public functions
+        
         func requestData(_ completion: @escaping (Result<UICollectionView.DataSource, Error>) -> Void) {
             guard !isLoading else { return }
             isLoading = true
@@ -47,3 +40,4 @@ extension PokedexViewController {
         }
     }
 }
+
